@@ -1,5 +1,5 @@
 import "@mantine/core/styles.css";
-import Test from "./components/test";
+// import Test from "./components/test";
 
 import { MantineProvider } from "@mantine/core";
 import StartButton from "./components/StartButton";
@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <MantineProvider>
-        <Test></Test>
+        {/* <Test></Test> */}
         <StartButton />
         <CardMatches/>
       </MantineProvider>
