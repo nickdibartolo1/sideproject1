@@ -3,9 +3,7 @@ import "@mantine/core/styles.css";
 
 import { MantineProvider } from "@mantine/core";
 import StartButton from "./components/StartButton";
-import CardMatches from "./components/CardMatches";
-
-console.log("ghsodghdg");
+// import CardMatches from "./components/CardMatches";
 
 function App() {
   return (
@@ -13,7 +11,7 @@ function App() {
       <MantineProvider>
         {/* <Test></Test> */}
         <StartButton />
-        <CardMatches/>
+        
       </MantineProvider>
     </>
   );
