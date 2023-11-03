@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import fetch from 'node-fetch';
+import words from './app/helpers/words.js'
 
 const app = express();
 const port = 3000;
@@ -12,11 +13,12 @@ app.use(cors());
 //     res.json({ message: 'This is a test response' });
 // });
 
-app.get("/word", async (req, res) => {
+const randomIndex = Math.floor(Math.random() * words.length);
+const randomWord = words[randomIndex];
+
+app.get("/giveword", async (req, res) => {
     
-    // const word = req.params.word;
-    const url = 'https://twinword-word-graph-dictionary.p.rapidapi.com/definition/?entry=salad';
-    // const url = `https://twinword-word-graph-dictionary.p.rapidapi.com/definition/?entry=${word}`;
+    const url = `https://twinword-word-graph-dictionary.p.rapidapi.com/definition/?entry=${randomWord}`;
     const options = {
       method: 'GET',
       headers: {
@@ -27,7 +29,7 @@ app.get("/word", async (req, res) => {
     
     try {
         const response = await fetch(url, options);
-        const result = await response.text();
+        const result = await response.json();
         console.log(result);
     } catch (error) {
         console.error(error);
