@@ -1,7 +1,6 @@
 import { Button } from "@mantine/core";
 import CardMatches from "./CardMatches";
 import { useState } from "react";
-// import { useState } from "react";
 
 const StartButton = () => {
   const [start, setStart] = useState(false);

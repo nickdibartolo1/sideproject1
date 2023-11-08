@@ -5,40 +5,54 @@ function CardMatches() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const fetchWordData = async () => {
+
+    async function fetchWordData() {
       try {
-        const result = await fetch("http://localhost:3001/giveword", {
-          method: "GET",
-        });
+
+        const response = await fetch("http://localhost:80/giveword");
 
         if (!response.ok) {
           throw new Error(`Request failed with status: ${response.status}`);
         }
 
-        const response = await result.json();
-        console.log(result); 
-        console.log(response); 
-        setData(result);
-
+        const worddata = await response.json();
+        setData(worddata)
+        console.log(worddata);
+       
       } catch (error) {
         console.error("Error fetching data:", error);
       }
-    };
-
+      
+    }
+    
     fetchWordData();
   }, []);
 
   return (
     <div>
-      {data.map((item, index) => (
-        <div key={index} style={{ backgroundColor: "gray" }}>
-          <SimpleGrid cols={4} spacing="xl" verticalSpacing="lg">
-            {item}
-          </SimpleGrid>
-        </div>
-      ))}
-      <div>CARDS SHOW</div>
-    </div>
+    {data ? (
+      <SimpleGrid cols={3}>
+        {data.meaning && data.meaning.noun && (
+          <>
+            <div>{data.meaning.noun}</div>
+            <div>2</div>
+            <div>{data.entry}</div>
+            <div>4</div>
+            <div>{data.entry}</div>
+            <div>5</div>
+            <div>{data.entry}</div>
+            <div>5</div>
+            <div>{data.entry}</div>
+            <div>5</div>
+            <div>{data.entry}</div>
+            <div>5</div>
+          </>
+        )}
+      </SimpleGrid>
+    ) : (
+      <p>Loading...</p>
+    )}
+  </div>
   );
 }
 
