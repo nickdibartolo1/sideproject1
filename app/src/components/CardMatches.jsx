@@ -1,31 +1,36 @@
 import { useState, useEffect } from "react";
 import { SimpleGrid } from "@mantine/core";
+// import Card from "./Card";
 
 function CardMatches() {
-  const [data, setData] = useState([]);
-  const [nounDefinition, setNounDefinition] = useState("");
+  // const [data, setData] = useState([]);
+  const [wordData, setWordData] = useState([]);
+  // const [nounDefinition, setNounDefinition] = useState("");
 
   useEffect(() => {
 
     async function fetchWordData() {
       try {
+        const wordArr = []
+        for (let i = 0; i < 3; i++) {
+          const response = await fetch("http://localhost:80/giveword");
 
-        const response = await fetch("http://localhost:80/giveword");
+          if (!response.ok) {
+            throw new Error(`Request failed with status: ${response.status}`);
+          }
 
-        if (!response.ok) {
-          throw new Error(`Request failed with status: ${response.status}`);
+          const worddata = await response.json();
+          //Get response from API and set the state
+          wordArr.push(worddata);
+          console.log(worddata);
+
+          //Data gives many definitions but we only want 1. Eliminate xcess definitions using .split() and set definition state
+           const nounDefinition = worddata.meaning.noun.split('\n')[0].substring(6);
+           console.log("NDEF", nounDefinition)
+           wordArr[i].nounDefinition = nounDefinition;
         }
 
-        //Get response from API and set the state
-        const worddata = await response.json();
-        setData(worddata)
-        console.log(worddata);
-
-       //Data gives many definitions but we only want 1. Eliminate xcess definitions using .split() and set definition state
-        const nounDefinition = worddata.meaning.noun.split('\n')[0].substring(6);
-        setNounDefinition(nounDefinition);
-        console.log("NDEF", nounDefinition)
-        
+        setWordData(wordArr);
        
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -37,11 +42,21 @@ function CardMatches() {
   }, []);
 
 
-  return (
-    <div>
-    {data ? (
+  const stat = 
       <SimpleGrid cols={3}>
-        {data.meaning && data.meaning.noun && (
+        {wordData.map((word, index) => (
+          <div key={index}>
+            <div>{word.entry}</div>
+            <div>{word.nounDefinition}</div>
+  
+          </div>
+        ))}
+      </SimpleGrid>
+   
+
+  return (
+    <div className="container">
+      {/* <SimpleGrid cols={3}>
           <>
             <div>{nounDefinition}</div>
             <div>2</div>
@@ -56,11 +71,8 @@ function CardMatches() {
             <div>2</div>
             <div>5</div>
           </>
-        )}
-      </SimpleGrid>
-    ) : (
-      <p>Loading...</p>
-    )}
+      </SimpleGrid> */}
+      {stat}
   </div>
   );
 }
