@@ -8,13 +8,18 @@ body {
     height: 100%;
 }
 
-body{
+body {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.container{
+.container {
     height: 700px;
     width: 700px;
+    background-color: aquamarine;
+}
+
+.card{
+    background-color: white;
 }
