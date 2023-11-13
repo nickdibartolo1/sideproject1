@@ -2,10 +2,8 @@ import { useState, useEffect } from "react";
 import { SimpleGrid } from "@mantine/core";
 
 function shuffleArray(array) {
-  // Create a copy of the array
   const shuffledArray = [...array];
 
-  // Function to shuffle the copied array using Fisher-Yates algorithm
   for (let i = shuffledArray.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
@@ -16,14 +14,12 @@ function shuffleArray(array) {
 }
 
 const Card = () => {
-  const [wordData, setWordData] = useState([]);
-  const [definitionData, setdefinitionData] = useState([]);
+  const [combinedData, setCombinedData] = useState([]);
 
   useEffect(() => {
-    async function fetchWordData() {
+    async function fetchData() {
       try {
-        const wordArr = [];
-        const definitionArr = [];
+        const dataArr = [];
 
         for (let i = 0; i < 3; i++) {
           const response = await fetch("http://localhost:80/giveword");
@@ -33,45 +29,47 @@ const Card = () => {
           }
 
           const apiData = await response.json();
-          // Ensure each word object has a nounDefinition property
-          wordArr.push({
+
+          const pairId = `pair_${i}`;
+
+          //push data object into established dataArr
+          dataArr.push({
+            id: pairId,
             entry: apiData.entry,
+            nounDefinition: apiData.meaning.noun.split("\n")[0].substring(6),
           });
-
-          definitionArr.push({
-            nounDefinition: apiData.meaning.noun.split("\n")[0].substring(6)
-          });
-          
         }
-        console.log("WORDARR", wordArr);
-        console.log("DEFARR", definitionArr);
-        // Shuffle the copied array before setting the state
-        setWordData(shuffleArray(wordArr));
-        setdefinitionData(shuffleArray(definitionArr))
 
-        console.log("SET", setWordData);
+        //shuffle pushed dataArr
+        const shuffledData = shuffleArray(dataArr);
+
+        // establish interleaveData array and put each entries and nounDefinitions based on their shared id
+        const interleavedData = [];
+        shuffledData.forEach(({ id, entry, nounDefinition }) => {
+          interleavedData.push({ id, entry });
+          interleavedData.push({ id, nounDefinition });
+        });
+
+        setCombinedData(interleavedData);
+        console.log("INTER", interleavedData)
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     }
 
-    fetchWordData();
-  }, []); 
-
-  const stat = (
-    <SimpleGrid cols={3}>
-      {wordData.map((word, index) => (
-        <div key={index}>
-          <div>{word.entry}</div>
-          <div>{definitionData[index].nounDefinition}</div>
-        </div>
-      ))}
-    </SimpleGrid>
-  );
+    fetchData();
+  }, []);
 
   return (
     <div className="container">
-      {stat}
+      <SimpleGrid cols={3}>
+        {combinedData.map((data, index) => (
+          <div key={index}>
+            <div>{data.entry}</div>
+            <div>{data.nounDefinition}</div>
+          </div>
+        ))}
+      </SimpleGrid>
     </div>
   );
 }
