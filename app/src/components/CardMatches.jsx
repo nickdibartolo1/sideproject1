@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { SimpleGrid } from "@mantine/core";
 import { fetchData } from "./utils/api";
 import { shuffleArray } from "./utils/shuffle";
+import Card from "./Card";
 
 function interleaveData(dataArr) {
   const shuffledData = shuffleArray(dataArr);
+  console.log("SHUFFLEDARRAY", shuffledData);
 
   const interleavedData = [];
   shuffledData.forEach(({ id, entry, nounDefinition }) => {
@@ -12,6 +13,7 @@ function interleaveData(dataArr) {
     interleavedData.push({ id, nounDefinition });
   });
 
+  console.log("INTER", interleavedData);
   return interleavedData;
 }
 
@@ -25,6 +27,7 @@ function CardMatches() {
         const interleavedData = interleaveData(dataArr);
 
         setCombinedData(interleavedData);
+        console.log("INTER", interleavedData)
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -35,27 +38,17 @@ function CardMatches() {
 
   return (
     <div className="container">
-      <SimpleGrid cols={3}>
         {combinedData.map((data, index) => (
-          <div key={index}>
+          <Card key={index} data={data} >
             <div>{data.entry}</div>
             <div>{data.nounDefinition}</div>
-          </div>
+          </Card>
         ))}
-      </SimpleGrid>
     </div>
   );
 }
 
 export default CardMatches;
-// const finishedArray =[
-//   {id: 'pair_2', nounDefinition: 'a spear with three prongs'},
-//   {id: 'pair_1', nounDefinition: 'a leader engaged in civil administration'},
-//   {id: 'pair_0', nounDefinition: 'a story about mythical or supernatural beings or events'},
-//   {id: 'pair_0', entry: 'legend'},
-//   {id: 'pair_2', entry: 'trident'},
-//   {id: 'pair_1', entry: 'politician'},
 
-// ]
 
 

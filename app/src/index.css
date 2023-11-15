@@ -9,6 +9,7 @@ body {
 }
 
 body {
+    background-color: rgb(110, 140, 180);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,9 +18,17 @@ body {
 .container {
     height: 700px;
     width: 700px;
-    background-color: aquamarine;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 1em;
 }
 
 .card{
     background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 5px;
 }
