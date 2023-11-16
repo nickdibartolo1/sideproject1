@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { fetchData } from "./utils/api";
 import { shuffleArray } from "./utils/shuffle";
 import Card from "./Card";
@@ -9,9 +9,10 @@ function interleaveData(dataArr) {
 
   const interleavedData = [];
   shuffledData.forEach(({ id, entry, nounDefinition }) => {
-    interleavedData.push({ id, entry });
-    interleavedData.push({ id, nounDefinition });
+    interleavedData.push({ id, content: entry });
+    interleavedData.push({ id, content: nounDefinition });
   });
+
 
   console.log("INTER", interleavedData);
   return interleavedData;
@@ -19,6 +20,7 @@ function interleaveData(dataArr) {
 
 function CardMatches() {
   const [combinedData, setCombinedData] = useState([]);
+
 
   useEffect(() => {
     async function fetchDataAndInterleave() {
@@ -36,14 +38,16 @@ function CardMatches() {
     fetchDataAndInterleave();
   }, []);
 
+  const shuffledCombinedData = useMemo(() => {
+    return shuffleArray(combinedData);
+  }, [combinedData]);
+
+  
   return (
     <div className="container">
-        {combinedData.map((data, index) => (
-          <Card key={index} data={data} >
-            <div>{data.entry}</div>
-            <div>{data.nounDefinition}</div>
-          </Card>
-        ))}
+      {shuffledCombinedData.map((data, index) => (
+        <Card key={index} data={data} />
+      ))}
     </div>
   );
 }

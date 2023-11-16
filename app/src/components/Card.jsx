@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
 
-const Card = ({ data }) => {
+function Card({ data }) {
   return (
     <div className="card">
-      <div>{data.entry}</div>
-      <div style={{fontSize: ".9rem"}}>{data.nounDefinition}</div>
+      <div style={{fontSize: ".8rem"}}>{data.content}</div>
     </div>
   );
-};
+}
 export default Card;
