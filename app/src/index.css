@@ -24,11 +24,24 @@ body {
     gap: 1em;
 }
 
-.card{
+.card {
     background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     border-radius: 5px;
+}
+
+.card.wrong{
+background-color: red;
+}
+
+.card.correct{
+background-color: rgb(0, 255, 157);
+}
+
+.card.active {
+    border-radius: 10px;
+    border-color: blue;
 }

@@ -14,8 +14,9 @@ export async function fetchData() {
   
       dataArr.push({
         id: pairId,
-        entry: apiData.entry,
+        noun: apiData.entry,
         nounDefinition: apiData.meaning.noun.split("\n")[0].substring(6),
+        stat: ""
       });
     }
   

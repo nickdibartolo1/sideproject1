@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { fetchData } from "./utils/api";
 import { shuffleArray } from "./utils/shuffle";
 import Card from "./Card";
@@ -8,11 +8,12 @@ function interleaveData(dataArr) {
   console.log("SHUFFLEDARRAY", shuffledData);
 
   const interleavedData = [];
-  shuffledData.forEach(({ id, entry, nounDefinition }) => {
-    interleavedData.push({ id, content: entry });
-    interleavedData.push({ id, content: nounDefinition });
+  shuffledData.forEach(({ id, noun, nounDefinition, stat }) => {
+    interleavedData.push({ id, content: noun, stat });
+    interleavedData.push({ id, content: nounDefinition, stat });
+    console.log("ID", id)
+    console.log("STAT", stat)
   });
-
 
   console.log("INTER", interleavedData);
   return interleavedData;
@@ -20,7 +21,7 @@ function interleaveData(dataArr) {
 
 function CardMatches() {
   const [combinedData, setCombinedData] = useState([]);
-
+  const [select, setSelect] = useState(-1);
 
   useEffect(() => {
     async function fetchDataAndInterleave() {
@@ -29,7 +30,7 @@ function CardMatches() {
         const interleavedData = interleaveData(dataArr);
 
         setCombinedData(interleavedData);
-        console.log("INTER", interleavedData)
+        console.log("INTER", interleavedData);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -38,21 +39,47 @@ function CardMatches() {
     fetchDataAndInterleave();
   }, []);
 
-  const shuffledCombinedData = useMemo(() => {
-    return shuffleArray(combinedData);
-  }, [combinedData]);
+  const shuffle = combinedData.sort(() => Math.random() - 0.5)
 
-  
+
+
+  const check = (current) => {
+
+    if (shuffle[current].id == shuffle[select].id) {
+      shuffle[current].stat = "correct";
+      shuffle[select].stat = "correct";
+      setSelect(-1)
+    } else {
+      shuffle[current].stat == "wrong";
+      shuffle[select].stat == "wrong";
+      setCombinedData([...combinedData])
+
+      setTimeout(() => {
+        shuffle[current].stat == "";
+        shuffle[select].stat == "";
+        setCombinedData([...combinedData]);
+        setSelect(-1);
+      }, 1000)
+    }
+  };
+
+  const handleClick = (id) => {
+    if (select === -1) {
+      shuffle[id].stat = "active"
+      setCombinedData([...combinedData])
+      setSelect(id);
+    } else {
+      check(id);
+    }
+  };
+
   return (
     <div className="container">
-      {shuffledCombinedData.map((data, index) => (
-        <Card key={index} data={data} />
+      {shuffle.map((data, index) => (
+        <Card key={index} data={data} id={index}  handleClick={handleClick} />
       ))}
     </div>
   );
 }
 
 export default CardMatches;
-
-
-
