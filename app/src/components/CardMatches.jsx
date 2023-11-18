@@ -41,8 +41,6 @@ function CardMatches() {
 
   const shuffle = combinedData.sort(() => Math.random() - 0.5)
 
-
-
   const check = (current) => {
 
     if (shuffle[current].id == shuffle[select].id) {
