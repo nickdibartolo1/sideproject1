@@ -42,7 +42,6 @@ function CardMatches() {
     fetchDataAndInterleave();
   }, []);
 
-
   //REF FOR DESELECTING A CARD - ABLES USER TO CLICK ANYWHERE TO DESELECT
   // useEffect(() => {
   //   const deselect = (e) => {
@@ -56,39 +55,19 @@ function CardMatches() {
   //   return () => document.body.removeEventListener("click", deselect);
   // }, []);
 
-  function check(id) {
-    if (combinedData[id].id === combinedData[select].id) {
-      const updatedData = [...combinedData];
-
-      updatedData[id].stat = "correct";
-      updatedData[select].stat = "correct";
-
-      updatedData[id].matched = true;
-      updatedData[select].matched = true;
-
-      setCombinedData(updatedData);
-    } else {
-      const updatedData = [...combinedData];
-      updatedData[id].stat = "wrong";
-      updatedData[select].stat = "wrong";
-      setCombinedData(updatedData);
-
-      setTimeout(() => {
-        updatedData[id].stat = "";
-        updatedData[select].stat = "";
-        setCombinedData(updatedData);
-      }, 1000);
-    }
-    setSelect(-1);
-  }
-
   function handleCardClick(id) {
+    if (combinedData[id].matched) {
+      // If the card is already matched, do nothing
+      return;
+    }
+
     if (select === id) {
       setSelect(-1); // Deselect the card if it's already selected
     } else {
       if (select !== -1 && combinedData[id].id === combinedData[select].id) {
         check(id);
-      } else {
+        setSelect(-1); // Deselect after a successful match
+      } else if (!combinedData[id].matched) {
         const updatedData = [...combinedData];
         updatedData[id].stat = "active";
         if (select !== -1) {
@@ -98,6 +77,20 @@ function CardMatches() {
         setSelect(id);
       }
     }
+  }
+
+  function check(id) {
+    const updatedData = [...combinedData];
+
+    updatedData[id].stat = "correct";
+    updatedData[select].stat = "correct";
+
+    console.log("DATA", updatedData[id].stat);
+
+    updatedData[id].matched = true;
+    updatedData[select].matched = true;
+
+    setCombinedData(updatedData);
   }
 
   return (

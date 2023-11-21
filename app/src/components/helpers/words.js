@@ -28,7 +28,7 @@ const words =
     "magic", "canyon", "panorama", "elephant", "bus", "radiation", "walker", "icicle", "gasoline", "submarine", "archer",
     "trunk", "miraculous", "sound", "missle", "artist", "spell", "witch", "studio", "exit", "glass",
     "system", "hate", "leader", "beer", "paragon", "divine", "delightful", "driver", "education", "responsibility", "cloud",
-    "manufacturer", "raven", "time", "harmonious", "power", "state", "bread", "candy", "steel", "cake", "volume", "bee",
+    "manufacturer", "raven", "time", "division", "power", "state", "bread", "candy", "steel", "cake", "volume", "bee",
     "math", "mother", "president", "mammal", "leadership", "duck", "season", "software", "science", "chamber", "oyster",
     "sponge", "trident", "pumpkin", "population", "gold", "lemon", "desk", "doctor", "guitar", "plane", "hammer",
     "year", "seaweed", "silver", "pig", "televison", "chest", "hole", "kite", "obligation", "mail", "divine", "cabinet",
