@@ -31,8 +31,7 @@ function CardMatches() {
         const dataArr = await fetchData();
         const interleavedData = interleaveData(dataArr);
 
-        // Shuffle the data when fetched and set
-        const shuffledData = interleavedData.sort(() => Math.random() - 0.5);
+        const shuffledData = interleavedData.sort(() => Math.random() - 0.5); // Shuffle the data when fetched and set
         setCombinedData(shuffledData);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -42,25 +41,12 @@ function CardMatches() {
     fetchDataAndInterleave();
   }, []);
 
-  //REF FOR DESELECTING A CARD - ABLES USER TO CLICK ANYWHERE TO DESELECT
-  // useEffect(() => {
-  //   const deselect = (e) => {
-  //     if (!deselectRef.current.contains(e.target)) {
-  //       setSelect(-1);
-  //     }
-  //   };
-
-  //   document.body.addEventListener("click", deselect);
-
-  //   return () => document.body.removeEventListener("click", deselect);
-  // }, []);
 
   function handleCardClick(id) {
     if (combinedData[id].matched) {
       // If the card is already matched, do nothing
       return;
     }
-
     if (select === id) {
       setSelect(-1); // Deselect the card if it's already selected
     } else {
@@ -75,14 +61,34 @@ function CardMatches() {
         }
         setCombinedData(updatedData);
         setSelect(id);
+
+        if (select !== -1 && combinedData[id].id !== combinedData[select].id) {
+          const updatedDataCopy = [...combinedData]; // Create a copy of the current data
+        
+          updatedDataCopy[id].stat = "wrong";
+          updatedDataCopy[select].stat = "wrong";
+          setCombinedData(updatedDataCopy);
+        
+          setTimeout(() => {
+            const resetData = updatedDataCopy.map(card => {
+              if (card.stat === "wrong") {
+                return { ...card, stat: "" }; // Reset only the cards marked as "wrong"
+              }
+              return card;
+            });
+            setCombinedData(resetData);
+          }, 1500); // Adjust the timeout duration as needed
+        
+          setSelect(-1); // Reset selection for a new match attempt
+        }
       }
     }
   }
 
   function check(id) {
-    const updatedData = [...combinedData];
+    const updatedData = [...combinedData]; // create new set copy
 
-    updatedData[id].stat = "correct";
+    updatedData[id].stat = "correct"; // set stat to correct if card ids match
     updatedData[select].stat = "correct";
 
     console.log("DATA", updatedData[id].stat);
@@ -108,3 +114,16 @@ function CardMatches() {
 }
 
 export default CardMatches;
+
+//REF FOR DESELECTING A CARD - ABLES USER TO CLICK ANYWHERE TO DESELECT
+// useEffect(() => {
+//   const deselect = (e) => {
+//     if (!deselectRef.current.contains(e.target)) {
+//       setSelect(-1);
+//     }
+//   };
+
+//   document.body.addEventListener("click", deselect);
+
+//   return () => document.body.removeEventListener("click", deselect);
+// }, []);

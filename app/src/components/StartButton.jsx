@@ -20,22 +20,22 @@ const StartButton = () => {
   return (
     <div>
       {start ? (
-        
         // <Deselector handleClickOutside={handleOutsideClick}>
-            <CardMatches></CardMatches>
-            // </Deselector>
-          
-        ) : (
-          <div>
-            <p>Match all the terms with their definitions as fast as you can!</p>
+        <CardMatches></CardMatches>
+      ) : (
+        // </Deselector>
+
+        <section>
+          <p>Match all the terms with their definitions as fast as you can!</p>
+          <div className="button">
             <Button variant="filled" onClick={startButtonClickHandler}>
               Start
             </Button>
           </div>
-        )}
-
+        </section>
+      )}
     </div>
-);
+  );
 };
 
 export default StartButton;
