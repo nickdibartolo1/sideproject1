@@ -22,7 +22,22 @@ function interleaveData(dataArr) {
 function CardMatches() {
   const [combinedData, setCombinedData] = useState([]);
   const [select, setSelect] = useState(-1);
+  const [isMobile, /*setIsMobile*/] = useState(false)
   const deslectRef = useRef();
+
+  const cardDeselectOnOutsideClick = (e) => {
+    if (deslectRef.current && !deslectRef.current.contains(e.target)) {
+      setSelect(-1);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", cardDeselectOnOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", cardDeselectOnOutsideClick);
+    };
+  });
 
   //FETCH DATA FROM API THEN SET
   useEffect(() => {
@@ -40,7 +55,6 @@ function CardMatches() {
 
     fetchDataAndInterleave();
   }, []);
-
 
   function handleCardClick(id) {
     if (combinedData[id].matched) {
@@ -64,13 +78,13 @@ function CardMatches() {
 
         if (select !== -1 && combinedData[id].id !== combinedData[select].id) {
           const updatedDataCopy = [...combinedData]; // Create a copy of the current data
-        
+
           updatedDataCopy[id].stat = "wrong";
           updatedDataCopy[select].stat = "wrong";
           setCombinedData(updatedDataCopy);
-        
+
           setTimeout(() => {
-            const resetData = updatedDataCopy.map(card => {
+            const resetData = updatedDataCopy.map((card) => {
               if (card.stat === "wrong") {
                 return { ...card, stat: "" }; // Reset only the cards marked as "wrong"
               }
@@ -78,7 +92,7 @@ function CardMatches() {
             });
             setCombinedData(resetData);
           }, 1500); // Adjust the timeout duration as needed
-        
+
           setSelect(-1); // Reset selection for a new match attempt
         }
       }
@@ -100,9 +114,10 @@ function CardMatches() {
   }
 
   return (
-    <div className="container" ref={deslectRef}>
+    <div className={isMobile? "mobile_container" : "container"} ref={deslectRef}>
       {combinedData.map((data, index) => (
         <Card
+          isSelected={index === select}
           key={index}
           data={data}
           id={index}
@@ -114,16 +129,3 @@ function CardMatches() {
 }
 
 export default CardMatches;
-
-//REF FOR DESELECTING A CARD - ABLES USER TO CLICK ANYWHERE TO DESELECT
-// useEffect(() => {
-//   const deselect = (e) => {
-//     if (!deselectRef.current.contains(e.target)) {
-//       setSelect(-1);
-//     }
-//   };
-
-//   document.body.addEventListener("click", deselect);
-
-//   return () => document.body.removeEventListener("click", deselect);
-// }, []);

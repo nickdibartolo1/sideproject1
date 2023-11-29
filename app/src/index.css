@@ -9,13 +9,13 @@ body {
 }
 
 body {
-    background-color: rgb(110, 140, 180);
+    background-color: rgb(154, 194, 247);
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
-.button{
+
+.button, h1{
     display: flex;
     justify-content: center;
     margin-top: 2rem;
@@ -28,6 +28,16 @@ body {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
     gap: 1em;
+    margin-top: 3rem;
+}
+.mobile_container {
+    height: 400px;
+    width: 400px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: .5rem;
+    margin-top: 3rem;
 }
 
 .card {
