@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { fetchData } from "./utils/api";
 import { shuffleArray } from "./utils/shuffle";
 import Card from "./Card";
+import { isMobile } from 'react-device-detect'
 
 function interleaveData(dataArr) {
   const shuffledData = shuffleArray(dataArr);
@@ -22,7 +23,6 @@ function interleaveData(dataArr) {
 function CardMatches() {
   const [combinedData, setCombinedData] = useState([]);
   const [select, setSelect] = useState(-1);
-  const [isMobile, /*setIsMobile*/] = useState(false)
   const deslectRef = useRef();
 
   const cardDeselectOnOutsideClick = (e) => {

@@ -10,15 +10,19 @@ body {
 
 body {
     background-color: rgb(154, 194, 247);
-    display: flex;
-    justify-content: center;
 }
 
 
-.button, h1{
+.button,
+h1 {
     display: flex;
     justify-content: center;
     margin-top: 2rem;
+}
+
+p {
+    display: flex;
+    justify-content: center;
 }
 
 .container {
@@ -30,14 +34,16 @@ body {
     gap: 1em;
     margin-top: 3rem;
 }
+
 .mobile_container {
-    height: 400px;
-    width: 400px;
+    height: 500px;
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
     gap: .5rem;
     margin-top: 3rem;
+    padding: 0 1rem 0 1rem
 }
 
 .card {
@@ -49,10 +55,10 @@ body {
     border-radius: 5px;
 }
 
-.card.wrong{
-background-color: rgb(255, 0, 0);
+.card.wrong {
+    background-color: rgb(255, 0, 0);
 }
 
-.card.correct{
-background-color: rgb(0, 255, 157);
+.card.correct {
+    background-color: rgb(0, 255, 157);
 }
