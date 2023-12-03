@@ -19,7 +19,7 @@ const words =
     "fire", "arm", "tranquility", "aurora", "politician", "umbra", "resonance", "anchor", "oblivion", "inspiration",
     "mystery", "halcyon", "blue", "novelty", "velvet", "amethyst", "elation", "sapphire", "innovation", "glisten", "trap",
     "azure", "bass", "road", "jasmine", "umbrella", "rivulet", "zephyr", "oasis", "fish", "dawn", "twilight", "space",
-    "rhapsody", "melody", "football", "lake", "quaint", "breath", "fascination", "splendid", "oven", "astronaut", "miracle",
+    "rhapsody", "melody", "football", "lake", "quaint", "breath", "fascination", "forever", "oven", "astronaut", "miracle",
     "security", "tongue", "radiance", "electric", "horse", "sock", "charming", "blade", "lime", "discussion", "mortar", "wizard",
     "weapon", "rapture", "string", "revolution", "roof", "solitude", "mystery", "glimmering", "paradise", "fantasy", "artichoke", "wagon",
     "rose", "dirt", "chemistry", "stranger", "independence", "cascade", "property", "spellbound", "marvel", "wonder", "joy", "ecstasy",

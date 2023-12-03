@@ -13,7 +13,7 @@ const StartButton = () => {
 
   return (
     <div>
-      <HeaderMenu></HeaderMenu>
+      <HeaderMenu startButtonClickHandler={startButtonClickHandler}></HeaderMenu>
       <div style={{ position: "relative", top: "6rem" }}>
         <h1>Word Match Game</h1>
         {start ? (

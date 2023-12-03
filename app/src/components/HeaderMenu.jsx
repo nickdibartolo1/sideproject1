@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+import Timer from "./Timer";
 import { Menu, Group, Center, Burger, Container } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconChevronDown } from "@tabler/icons-react";
@@ -5,7 +7,7 @@ import classes from "./HeaderMenu.module.css";
 
 const links = [{ label: "Features" }, { label: "Features" }];
 
-export function HeaderMenu() {
+export function HeaderMenu({ startButtonClickHandler }) {
   const [opened, { toggle }] = useDisclosure(false);
 
   const items = links.map((link) => {
@@ -53,6 +55,7 @@ export function HeaderMenu() {
   return (
     <header className={classes.header}>
       <Container size="md">
+      <Timer startButtonClickHandler={startButtonClickHandler}></Timer>
         <div className={classes.inner}>
           <Group gap={5} visibleFrom="sm">
             {items}
