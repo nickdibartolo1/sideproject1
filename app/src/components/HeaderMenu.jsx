@@ -1,62 +1,57 @@
 /* eslint-disable react/prop-types */
-import Timer from "./Timer";
-import { Menu, Group, Center, Burger, Container } from "@mantine/core";
+import { useEffect, useState } from "react";
+import { Group, Burger, Container } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { IconChevronDown } from "@tabler/icons-react";
 import classes from "./HeaderMenu.module.css";
 
-const links = [{ label: "Features" }, { label: "Features" }];
-
-export function HeaderMenu({ startOnTimer }) {
+export function HeaderMenu({ onReceiveTimer, timerActive }) {
   const [opened, { toggle }] = useDisclosure(false);
+  const [time, setTime] = useState(0);
+  const [headerMenuTimerActive, setHeaderMenuTimerActive] = useState(false);
 
-  const items = links.map((link) => {
-    const menuItems = link.links?.map((item) => (
-      <Menu.Item key={item.link}>{item.label}</Menu.Item>
-    ));
+  useEffect(() => {
+    let increaseTime;
 
-    if (menuItems) {
-      return (
-        <Menu
-          key={link.label}
-          trigger="hover"
-          transitionProps={{ exitDuration: 0 }}
-          withinPortal
-        >
-          <Menu.Target>
-            <a
-              href={link.link}
-              className={classes.link}
-              onClick={(event) => event.preventDefault()}
-            >
-              <Center>
-                <span className={classes.linkLabel}>{link.label}</span>
-                <IconChevronDown size="0.9rem" stroke={1.5} />
-              </Center>
-            </a>
-          </Menu.Target>
-          <Menu.Dropdown>{menuItems}</Menu.Dropdown>
-        </Menu>
-      );
+    if (timerActive || headerMenuTimerActive) {
+      // Start the timer if either parent or child triggers it
+      increaseTime = setTimeout(() => {
+        setTime((prevTime) => prevTime + 1);
+      }, 1000);
     }
 
+    return () => {
+      clearTimeout(increaseTime);
+    };
+  }, [time, timerActive, headerMenuTimerActive]);
+
+  useEffect(() => {
+    onReceiveTimer(time);
+  }, [time, onReceiveTimer]);
+
+  useEffect(() => {
+    setHeaderMenuTimerActive(timerActive); // Update child timer when parent changes
+  }, [timerActive]);
+
+  const links = [{ link: '/about', label: 'Restart' }, { link: '/about', label: 'Leaderboards' }];
+
+  const items = links.map((link) => {
     return (
-      <a
+      <button
         key={link.label}
         href={link.link}
         className={classes.link}
         onClick={(event) => event.preventDefault()}
       >
         {link.label}
-      </a>
+      </button>
     );
   });
 
   return (
     <header className={classes.header}>
       <Container size="md">
-      <Timer startOnTimer={startOnTimer}></Timer>
         <div className={classes.inner}>
+          <p>Time: {time}</p>
           <Group gap={5} visibleFrom="sm">
             {items}
           </Group>
