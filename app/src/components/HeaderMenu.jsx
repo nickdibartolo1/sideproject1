@@ -7,7 +7,7 @@ import classes from "./HeaderMenu.module.css";
 
 const links = [{ label: "Features" }, { label: "Features" }];
 
-export function HeaderMenu({ startButtonClickHandler }) {
+export function HeaderMenu({ startOnTimer }) {
   const [opened, { toggle }] = useDisclosure(false);
 
   const items = links.map((link) => {
@@ -55,7 +55,7 @@ export function HeaderMenu({ startButtonClickHandler }) {
   return (
     <header className={classes.header}>
       <Container size="md">
-      <Timer startButtonClickHandler={startButtonClickHandler}></Timer>
+      <Timer startOnTimer={startOnTimer}></Timer>
         <div className={classes.inner}>
           <Group gap={5} visibleFrom="sm">
             {items}

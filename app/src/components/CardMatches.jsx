@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { fetchData } from "./utils/api";
 import { shuffleArray } from "./utils/shuffle";
 import Card from "./Card";
-import { isMobile } from 'react-device-detect'
+import { isMobile } from "react-device-detect";
 
 function interleaveData(dataArr) {
   const shuffledData = shuffleArray(dataArr);
@@ -114,16 +114,21 @@ function CardMatches() {
   }
 
   return (
-    <div className={isMobile? "mobile_container" : "container"} ref={deslectRef}>
-      {combinedData.map((data, index) => (
-        <Card
-          isSelected={index === select}
-          key={index}
-          data={data}
-          id={index}
-          handleCardClick={handleCardClick}
-        />
-      ))}
+    <div style={{display: "flex", justifyContent: "center"}}>
+      <div
+        className={isMobile ? "mobile_container" : "container"}
+        ref={deslectRef}
+      >
+        {combinedData.map((data, index) => (
+          <Card
+            isSelected={index === select}
+            key={index}
+            data={data}
+            id={index}
+            handleCardClick={handleCardClick}
+          />
+        ))}
+      </div>
     </div>
   );
 }

@@ -1,15 +1,16 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 
-const Timer = ({ startButtonClickHandler }) => {
+const Timer = ({ startOnTimer }) => {
   const [time, setTime] = useState(0);
   const [timerActive, setTimerActive] = useState(false);
 
   useEffect(() => {
     let increaseTime;
+
     if (timerActive) {
       increaseTime = setTimeout(() => {
-        setTime(time + 1);
+         setTime((prevTime) => prevTime + 1);
       }, 1000);
     }
 
@@ -19,10 +20,11 @@ const Timer = ({ startButtonClickHandler }) => {
   }, [time, timerActive]);
 
   useEffect(() => {
-    if (startButtonClickHandler) {
+    console.warn('startOnTimer changed:', startOnTimer);
+    if (startOnTimer) {
       setTimerActive(true);
     }
-  }, [startButtonClickHandler]);
+  }, [startOnTimer]);
 
   return (
     <div>
