@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import { Group, Burger, Container } from "@mantine/core";
+import { Group, Burger, Container, Button } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import classes from "./HeaderMenu.module.css";
+import Leaderboards from "./Leaderboards";
 
 export function HeaderMenu({ onReceiveTimer, timerActive }) {
   const [opened, { toggle }] = useDisclosure(false);
@@ -32,20 +33,9 @@ export function HeaderMenu({ onReceiveTimer, timerActive }) {
     setHeaderMenuTimerActive(timerActive); // Update child timer when parent changes
   }, [timerActive]);
 
-  const links = [{ link: '/about', label: 'Restart' }, { link: '/about', label: 'Leaderboards' }];
-
-  const items = links.map((link) => {
-    return (
-      <button
-        key={link.label}
-        href={link.link}
-        className={classes.link}
-        onClick={(event) => event.preventDefault()}
-      >
-        {link.label}
-      </button>
-    );
-  });
+  const handleRefresh = () => {
+    window.location.reload();
+  };
 
   return (
     <header className={classes.header}>
@@ -53,7 +43,8 @@ export function HeaderMenu({ onReceiveTimer, timerActive }) {
         <div className={classes.inner}>
           <p>Time: {time}</p>
           <Group gap={5} visibleFrom="sm">
-            {items}
+            <Button className={classes.button} onClick={handleRefresh}>Restart</Button>
+            <Leaderboards></Leaderboards>
           </Group>
           <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
         </div>

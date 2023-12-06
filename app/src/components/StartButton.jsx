@@ -29,7 +29,7 @@ const StartButton = () => {
         timerActive={headerMenuTimerActive} // Pass down the timer state
       ></HeaderMenu>
       <div style={{ position: "relative" }}>
-        <h1>Word Match Game</h1>
+        <h1>Card Match Game</h1>
         {start ? (
           <CardMatches></CardMatches>
         ) : (
@@ -38,7 +38,7 @@ const StartButton = () => {
               Match all the terms with their definitions as fast as you can!
             </p>
             <div className="button">
-              <Button variant="filled" onClick={startButtonClickHandler}>
+              <Button className="button-style" variant="filled" onClick={startButtonClickHandler}>
                 Start
               </Button>
             </div>

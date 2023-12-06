@@ -31,8 +31,8 @@ function CardMatches() {
     }
   };
 
-  useEffect(() => {
-    document.addEventListener("mousedown", cardDeselectOnOutsideClick);
+  useEffect(() => { // allows ability to deselect a selected card by clicking outside the card
+    document.addEventListener("mousedown", cardDeselectOnOutsideClick); 
 
     return () => {
       document.removeEventListener("mousedown", cardDeselectOnOutsideClick);
