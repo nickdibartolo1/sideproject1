@@ -1,7 +1,7 @@
 const words = 
   [
     "apple", "dog", "car", "house", "sun", "cat", "book", "tree", "river", "mountain",
-    "computer", "flower", "ocean", "bird", "child", "friend", "city", "music", "coffee", "shoes",
+    "computer", "flower", "ocean", "bird", "child", "friend", "city", "music", "coffee", "generator",
     "pen", "camera", "sky", "phone", "chair", "cloud", "bag", "bike", "guitar", "hat", "key",
     "lake", "moon", "rain", "beach", "door", "window", "ship", "idea", "smile", "star", "fire",
     "time", "pillow", "dream", "hope", "love", "knowledge", "wisdom", "road", "island", "song",

@@ -1,7 +1,7 @@
 export async function fetchData() {
     const dataArr = [];
   
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 2; i++) {
       const response = await fetch("http://localhost:80/giveword");
   
       if (!response.ok) {

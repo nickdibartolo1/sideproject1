@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { fetchData } from "./utils/api";
 import { shuffleArray } from "./utils/shuffle";
 import Card from "./Card";
+import FinishedModal from "./FinishedModal";
 import { isMobile } from "react-device-detect";
 
 function interleaveData(dataArr) {
@@ -23,6 +24,7 @@ function interleaveData(dataArr) {
 function CardMatches() {
   const [combinedData, setCombinedData] = useState([]);
   const [select, setSelect] = useState(-1);
+  const [gameFinsihed, setGameFinished] = useState(false);
   const deslectRef = useRef();
 
   const cardDeselectOnOutsideClick = (e) => {
@@ -31,8 +33,9 @@ function CardMatches() {
     }
   };
 
-  useEffect(() => { // allows ability to deselect a selected card by clicking outside the card
-    document.addEventListener("mousedown", cardDeselectOnOutsideClick); 
+  useEffect(() => {
+    // allows ability to deselect a selected card by clicking outside the card
+    document.addEventListener("mousedown", cardDeselectOnOutsideClick);
 
     return () => {
       document.removeEventListener("mousedown", cardDeselectOnOutsideClick);
@@ -111,10 +114,15 @@ function CardMatches() {
     updatedData[select].matched = true;
 
     setCombinedData(updatedData);
+
+    const allMatched = updatedData.every((card) => card.macthed);
+    if (allMatched) {
+      setGameFinished(true);
+    }
   }
 
   return (
-    <div style={{display: "flex", justifyContent: "center"}}>
+    <div style={{ display: "flex", justifyContent: "center" }}>
       <div
         className={isMobile ? "mobile_container" : "container"}
         ref={deslectRef}
@@ -129,6 +137,7 @@ function CardMatches() {
           />
         ))}
       </div>
+      {gameFinsihed && <FinishedModal></FinishedModal>}
     </div>
   );
 }
