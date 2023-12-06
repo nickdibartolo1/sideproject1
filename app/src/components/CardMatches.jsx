@@ -115,7 +115,7 @@ function CardMatches() {
 
     setCombinedData(updatedData);
 
-    const allMatched = updatedData.every((card) => card.macthed);
+    const allMatched = updatedData.every((card) => card.matched);
     if (allMatched) {
       setGameFinished(true);
     }
@@ -137,7 +137,7 @@ function CardMatches() {
           />
         ))}
       </div>
-      {gameFinsihed && <FinishedModal></FinishedModal>}
+      {gameFinsihed && <FinishedModal showModal={gameFinsihed}></FinishedModal>}
     </div>
   );
 }
