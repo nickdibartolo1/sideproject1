@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect, useRef } from "react";
 import { fetchData } from "./utils/api";
 import { shuffleArray } from "./utils/shuffle";
@@ -21,10 +22,11 @@ function interleaveData(dataArr) {
   return interleavedData;
 }
 
-function CardMatches() {
+function CardMatches({ onGameFinish }) {
   const [combinedData, setCombinedData] = useState([]);
   const [select, setSelect] = useState(-1);
   const [gameFinsihed, setGameFinished] = useState(false);
+
   const deslectRef = useRef();
 
   const cardDeselectOnOutsideClick = (e) => {
@@ -117,7 +119,10 @@ function CardMatches() {
 
     const allMatched = updatedData.every((card) => card.matched);
     if (allMatched) {
+      onGameFinish();
       setGameFinished(true);
+    
+  
     }
   }
 

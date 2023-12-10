@@ -22,6 +22,11 @@ const StartButton = () => {
     setTimer(timerValue);
   };
 
+  const handleGameFinish = () => {
+    setHeaderMenuTimerActive(false); // Stop the timer in HeaderMenu when the game finishes
+    console.log("Game has finished!");
+  };
+
   return (
     <div>
       <HeaderMenu
@@ -31,7 +36,7 @@ const StartButton = () => {
       <div style={{ position: "relative" }}>
         <h1>Card Match Game</h1>
         {start ? (
-          <CardMatches></CardMatches>
+          <CardMatches onGameFinish={handleGameFinish}></CardMatches>
         ) : (
           <section>
             <p>

@@ -33,7 +33,7 @@ export function HeaderMenu({ onReceiveTimer, timerActive }) {
     setHeaderMenuTimerActive(timerActive); // Update child timer when parent changes
   }, [timerActive]);
 
-  const handleRefresh = () => {
+  const handleRefresh = () => { // refresh the page when the Restart button is clicked for restart
     window.location.reload();
   };
 
