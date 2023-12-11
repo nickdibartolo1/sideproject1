@@ -16,8 +16,9 @@ function FinishedModal({ showModal }) {
 
   return (
     <>
-      <Modal opened={opened} onClose={close} title="Congratulations!">
+      <Modal style={{textAlign: "center"}} opened={opened} onClose={close}>
         <h2>Game Finished!</h2>
+        <h3>Your time was: </h3>
       </Modal>
     </>
   );
