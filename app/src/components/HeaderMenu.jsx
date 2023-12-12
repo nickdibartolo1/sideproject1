@@ -7,24 +7,29 @@ import Leaderboards from "./Leaderboards";
 
 export function HeaderMenu({ onReceiveTimer, timerActive }) {
   const [opened, { toggle }] = useDisclosure(false);
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState({ seconds: 0, milliseconds: 0 });
   const [headerMenuTimerActive, setHeaderMenuTimerActive] = useState(false);
 
   useEffect(() => {
-    let increaseTime;
+    let timer;
 
     if (timerActive || headerMenuTimerActive) {
       // Start the timer if either parent or child triggers it
-      increaseTime = setTimeout(() => {
-        setTime((prevTime) => prevTime + 1);
-      }, 1000);
+      timer = setInterval(() => {
+        setTime((prevTime) => {
+          const milliseconds = prevTime.milliseconds + 10; // Count milliseconds by 10s
+          if (milliseconds === 1000) {
+            return { seconds: prevTime.seconds + 1, milliseconds: 0 };
+          }
+          return { ...prevTime, milliseconds };
+        });
+      }, 10);
     }
 
     return () => {
-      clearTimeout(increaseTime);
+      clearInterval(timer);
     };
-  }, [time, timerActive, headerMenuTimerActive]);
-
+  }, [timerActive, headerMenuTimerActive]);
 
   useEffect(() => {
     onReceiveTimer(time);
@@ -34,7 +39,8 @@ export function HeaderMenu({ onReceiveTimer, timerActive }) {
     setHeaderMenuTimerActive(timerActive); // Update child timer when parent changes
   }, [timerActive]);
 
-  const handleRefresh = () => { // refresh the page when the Restart button is clicked for restart
+  const handleRefresh = () => {
+    // refresh the page when the Restart button is clicked for restart
     window.location.reload();
   };
 
@@ -42,9 +48,18 @@ export function HeaderMenu({ onReceiveTimer, timerActive }) {
     <header className={classes.header}>
       <Container size="md">
         <div className={classes.inner}>
-          <p>Time: {time}</p>
+          <p>
+            Time:{" "}
+            {`${time.seconds.toString().padStart(2, "0")}:${(
+              time.milliseconds / 10
+            )
+              .toFixed(0)
+              .padStart(2, "0")}`}
+          </p>
           <Group gap={5} visibleFrom="sm">
-            <Button className={classes.button} onClick={handleRefresh}>Restart</Button>
+            <Button className={classes.button} onClick={handleRefresh}>
+              Restart
+            </Button>
             <Leaderboards></Leaderboards>
           </Group>
           <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
