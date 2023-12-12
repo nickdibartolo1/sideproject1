@@ -25,6 +25,7 @@ export function HeaderMenu({ onReceiveTimer, timerActive }) {
     };
   }, [time, timerActive, headerMenuTimerActive]);
 
+
   useEffect(() => {
     onReceiveTimer(time);
   }, [time, onReceiveTimer]);

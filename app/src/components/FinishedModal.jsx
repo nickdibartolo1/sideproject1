@@ -22,7 +22,7 @@ function FinishedModal({ showModal }) {
     <>
       <Modal style={{textAlign: "center"}} opened={opened} onClose={close}>
         <h2>Game Finished!</h2>
-        <h3>Your time was: </h3>
+        <h3>Your time was: {} </h3>
         <Button onClick={handleRefresh}>Play Again</Button>
       </Modal>
     </>

@@ -121,8 +121,6 @@ function CardMatches({ onGameFinish }) {
     if (allMatched) {
       onGameFinish();
       setGameFinished(true);
-    
-  
     }
   }
 
@@ -142,7 +140,11 @@ function CardMatches({ onGameFinish }) {
           />
         ))}
       </div>
-      {gameFinsihed && <FinishedModal showModal={gameFinsihed}></FinishedModal>}
+      {gameFinsihed && (
+        <FinishedModal
+          showModal={gameFinsihed}
+        ></FinishedModal>
+      )}
     </div>
   );
 }

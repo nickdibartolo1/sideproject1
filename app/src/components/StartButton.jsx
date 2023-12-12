@@ -7,6 +7,7 @@ const StartButton = () => {
   const [start, setStart] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [timer, setTimer] = useState(null);
+  const [finalTime, setFinalTime] = useState(0);
   const [headerMenuTimerActive, setHeaderMenuTimerActive] = useState(false);
 
   const startButtonClickHandler = () => {
@@ -22,21 +23,23 @@ const StartButton = () => {
     setTimer(timerValue);
   };
 
-  const handleGameFinish = () => {
+  const handleGameFinish = (timeScore) => {
     setHeaderMenuTimerActive(false); // Stop the timer in HeaderMenu when the game finishes
+    setFinalTime(timeScore)
     console.log("Game has finished!");
+    console.log("Game has finished!", "Final time:", timeScore);
   };
 
   return (
     <div>
       <HeaderMenu
         onReceiveTimer={receiveTimerFromHeaderMenu}
-        timerActive={headerMenuTimerActive} // Pass down the timer state
+        timerActive={headerMenuTimerActive} 
       ></HeaderMenu>
       <div style={{ position: "relative" }}>
         <h1>Card Match Game</h1>
         {start ? (
-          <CardMatches onGameFinish={handleGameFinish}></CardMatches>
+          <CardMatches onGameFinish={handleGameFinish} ></CardMatches>
         ) : (
           <section>
             <p>
