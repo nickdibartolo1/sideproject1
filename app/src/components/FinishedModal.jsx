@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { Modal, Button } from "@mantine/core";
 
-function FinishedModal({ showModal }) {
+function FinishedModal({ showModal, finalScore }) {
   const [opened, { open, close }] = useDisclosure(false);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function FinishedModal({ showModal }) {
     <>
       <Modal style={{textAlign: "center"}} opened={opened} onClose={close}>
         <h2>Game Finished!</h2>
-        <h3>Your time was: {} </h3>
+        <h3>Your time was: {finalScore} </h3>
         <Button onClick={handleRefresh}>Play Again</Button>
       </Modal>
     </>

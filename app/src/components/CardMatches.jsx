@@ -22,7 +22,7 @@ function interleaveData(dataArr) {
   return interleavedData;
 }
 
-function CardMatches({ onGameFinish }) {
+function CardMatches({ onGameFinish, finalScore }) {
   const [combinedData, setCombinedData] = useState([]);
   const [select, setSelect] = useState(-1);
   const [gameFinsihed, setGameFinished] = useState(false);
@@ -142,6 +142,7 @@ function CardMatches({ onGameFinish }) {
       </div>
       {gameFinsihed && (
         <FinishedModal
+          finalScore={finalScore}
           showModal={gameFinsihed}
         ></FinishedModal>
       )}

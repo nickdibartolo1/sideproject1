@@ -44,6 +44,13 @@ export function HeaderMenu({ onReceiveTimer, timerActive }) {
     window.location.reload();
   };
 
+  // useEffect(() => {
+  //   if (!timerActive && getCurrentTime) {
+  //     // Send the current timer value to the parent when the timer stops
+  //     getCurrentTime(time);
+  //   }
+  // }, [timerActive, getCurrentTime, time]);
+
   return (
     <header className={classes.header}>
       <Container size="md">

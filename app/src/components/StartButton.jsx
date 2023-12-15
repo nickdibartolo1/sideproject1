@@ -1,6 +1,6 @@
 import { Button } from "@mantine/core";
 import CardMatches from "./CardMatches";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import HeaderMenu from "./HeaderMenu";
 
 const StartButton = () => {
@@ -18,35 +18,60 @@ const StartButton = () => {
 
   const receiveTimerFromHeaderMenu = (timerValue) => {
     // Receive timer value from HeaderMenu
-    console.log("Received timer value from HeaderMenu:", timerValue);
+    // console.log("Received timer value from HeaderMenu:", timerValue);
     // Use the timer value as needed in the StartButton component
     setTimer(timerValue);
   };
 
-  const handleGameFinish = (timeScore) => {
-    setHeaderMenuTimerActive(false); // Stop the timer in HeaderMenu when the game finishes
-    setFinalTime(timeScore)
+  const handleGameFinish = () => {
+    // Get the current time when the game finishes
+    // const finalGameTime = `${finalTimerValue.seconds.toString().padStart(2, "0")}:${(finalTimerValue.milliseconds / 10).toFixed(0).padStart(2, "0")}`;
+    const finalGameTime = "5464";
+    setHeaderMenuTimerActive(false);
+
+    // Set the finalTime to the current time
+    setFinalTime(finalGameTime);
+
     console.log("Game has finished!");
-    console.log("Game has finished!", "Final time:", timeScore);
+    console.log("Final time:", finalGameTime);
   };
+
+  // const handleGameFinish = (finalTimerValue) => {
+  //   // Get the current time when the game finishes
+  //   const finalGameTime = `${finalTimerValue.seconds.toString().padStart(2, "0")}:${(finalTimerValue.milliseconds / 10).toFixed(0).padStart(2, "0")}`;
+  //   setHeaderMenuTimerActive(false);
+
+  //   // Set the finalTime to the current time
+  //   setFinalTime(finalGameTime);
+
+  //   console.log("Game has finished!");
+  //   console.log("Final time:", finalGameTime);
+  // };
 
   return (
     <div>
       <HeaderMenu
         onReceiveTimer={receiveTimerFromHeaderMenu}
-        timerActive={headerMenuTimerActive} 
+        timerActive={headerMenuTimerActive}
       ></HeaderMenu>
       <div style={{ position: "relative" }}>
         <h1>Card Match Game</h1>
         {start ? (
-          <CardMatches onGameFinish={handleGameFinish} ></CardMatches>
+          <CardMatches
+            onGameFinish={handleGameFinish}
+            finalScore={finalTime}
+          ></CardMatches>
         ) : (
           <section>
             <p>
               Match all the terms with their definitions as fast as you can!
             </p>
             <div className="button">
-              <Button className="button-style" variant="filled" onClick={startButtonClickHandler}>
+              <Button
+                className="button-style"
+                variant="filled"
+                onClick={startButtonClickHandler}
+              >
                 Start
               </Button>
             </div>
