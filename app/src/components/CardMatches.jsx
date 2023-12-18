@@ -117,7 +117,7 @@ function CardMatches({ onGameFinish, finalScore }) {
 
     setCombinedData(updatedData);
 
-    const allMatched = updatedData.every((card) => card.matched);
+    const allMatched = updatedData.every((card) => card.matched); //if all cards are matched then game is over.
     if (allMatched) {
       onGameFinish();
       setGameFinished(true);

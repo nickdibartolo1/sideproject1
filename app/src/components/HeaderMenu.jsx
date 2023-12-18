@@ -25,7 +25,6 @@ export function HeaderMenu({ onReceiveTimer, timerActive }) {
         });
       }, 10);
     }
-
     return () => {
       clearInterval(timer);
     };
@@ -35,21 +34,14 @@ export function HeaderMenu({ onReceiveTimer, timerActive }) {
     onReceiveTimer(time);
   }, [time, onReceiveTimer]);
 
+
   useEffect(() => {
     setHeaderMenuTimerActive(timerActive); // Update child timer when parent changes
   }, [timerActive]);
 
-  const handleRefresh = () => {
-    // refresh the page when the Restart button is clicked for restart
+  const handleRefresh = () => { // refresh the page when the Restart button is clicked for restart
     window.location.reload();
   };
-
-  // useEffect(() => {
-  //   if (!timerActive && getCurrentTime) {
-  //     // Send the current timer value to the parent when the timer stops
-  //     getCurrentTime(time);
-  //   }
-  // }, [timerActive, getCurrentTime, time]);
 
   return (
     <header className={classes.header}>

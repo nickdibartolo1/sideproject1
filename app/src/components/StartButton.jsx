@@ -1,13 +1,13 @@
 import { Button } from "@mantine/core";
 import CardMatches from "./CardMatches";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import HeaderMenu from "./HeaderMenu";
 
 const StartButton = () => {
   const [start, setStart] = useState(false);
   // eslint-disable-next-line no-unused-vars
-  const [timer, setTimer] = useState(null);
-  const [finalTime, setFinalTime] = useState(0);
+  const [timer, setTimer] = useState(null); 
+  const [finalTime, setFinalTime] = useState(null);
   const [headerMenuTimerActive, setHeaderMenuTimerActive] = useState(false);
 
   const startButtonClickHandler = () => {
@@ -16,11 +16,11 @@ const StartButton = () => {
     console.log("I have been awakened!");
   };
 
-  const receiveTimerFromHeaderMenu = (timerValue) => {
+  const receiveTimerFromHeaderMenu = () => {
     // Receive timer value from HeaderMenu
     // console.log("Received timer value from HeaderMenu:", timerValue);
     // Use the timer value as needed in the StartButton component
-    setTimer(timerValue);
+    setTimer();
   };
 
   const handleGameFinish = () => {
@@ -35,18 +35,6 @@ const StartButton = () => {
     console.log("Game has finished!");
     console.log("Final time:", finalGameTime);
   };
-
-  // const handleGameFinish = (finalTimerValue) => {
-  //   // Get the current time when the game finishes
-  //   const finalGameTime = `${finalTimerValue.seconds.toString().padStart(2, "0")}:${(finalTimerValue.milliseconds / 10).toFixed(0).padStart(2, "0")}`;
-  //   setHeaderMenuTimerActive(false);
-
-  //   // Set the finalTime to the current time
-  //   setFinalTime(finalGameTime);
-
-  //   console.log("Game has finished!");
-  //   console.log("Final time:", finalGameTime);
-  // };
 
   return (
     <div>
