@@ -16,25 +16,40 @@ const StartButton = () => {
     console.log("I have been awakened!");
   };
 
-  const receiveTimerFromHeaderMenu = () => {
-    // Receive timer value from HeaderMenu
-    // console.log("Received timer value from HeaderMenu:", timerValue);
-    // Use the timer value as needed in the StartButton component
-    setTimer();
+  const receiveTimerFromHeaderMenu = (x) => {
+    if (x && typeof x === 'object' && 'seconds' in x && 'milliseconds' in x) {
+      setTimer(x);
+  
+      const finalGameTime = `${x.seconds.toString().padStart(2, "0")}:${(x.milliseconds / 10).toFixed(0).padStart(2, "0")}`;
+      setHeaderMenuTimerActive(false);
+      setFinalTime(finalGameTime);
+  
+      // console.log("Game has finished!");
+      // console.log("Final time:", finalGameTime);
+    } else {
+      console.error("Invalid timer object:", x);
+    }
   };
 
-  const handleGameFinish = () => {
-    // Get the current time when the game finishes
-    // const finalGameTime = `${finalTimerValue.seconds.toString().padStart(2, "0")}:${(finalTimerValue.milliseconds / 10).toFixed(0).padStart(2, "0")}`;
-    const finalGameTime = "5464";
-    setHeaderMenuTimerActive(false);
+  // const receiveTimerFromHeaderMenu = (x) => {
+  //   // Use the timer value as needed in the StartButton component
+  //   setTimer(x);
+  //    // Get the current time when the game finishes
 
-    // Set the finalTime to the current time
-    setFinalTime(finalGameTime);
+  // };
 
-    console.log("Game has finished!");
-    console.log("Final time:", finalGameTime);
-  };
+  // const handleGameFinish = () => {
+  //   // Get the current time when the game finishes
+  //   // const finalGameTime = `${finalTimerValue.seconds.toString().padStart(2, "0")}:${(finalTimerValue.milliseconds / 10).toFixed(0).padStart(2, "0")}`;
+  //   const finalGameTime = "5464";
+  //   setHeaderMenuTimerActive(false);
+
+  //   // Set the finalTime to the current time
+  //   setFinalTime(finalGameTime);
+
+  //   console.log("Game has finished!");
+  //   console.log("Final time:", finalGameTime);
+  // };
 
   return (
     <div>
@@ -46,7 +61,7 @@ const StartButton = () => {
         <h1>Card Match Game</h1>
         {start ? (
           <CardMatches
-            onGameFinish={handleGameFinish}
+            onGameFinish={receiveTimerFromHeaderMenu}
             finalScore={finalTime}
           ></CardMatches>
         ) : (

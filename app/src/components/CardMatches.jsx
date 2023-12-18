@@ -25,7 +25,7 @@ function interleaveData(dataArr) {
 function CardMatches({ onGameFinish, finalScore }) {
   const [combinedData, setCombinedData] = useState([]);
   const [select, setSelect] = useState(-1);
-  const [gameFinsihed, setGameFinished] = useState(false);
+  const [gameFinished, setGameFinished] = useState(false);
 
   const deslectRef = useRef();
 
@@ -117,7 +117,7 @@ function CardMatches({ onGameFinish, finalScore }) {
 
     setCombinedData(updatedData);
 
-    const allMatched = updatedData.every((card) => card.matched); //if all cards are matched then game is over.
+    const allMatched = updatedData.every((card) => card.matched); //if all cards are matched then game is over and end
     if (allMatched) {
       onGameFinish();
       setGameFinished(true);
@@ -140,10 +140,10 @@ function CardMatches({ onGameFinish, finalScore }) {
           />
         ))}
       </div>
-      {gameFinsihed && (
+      {gameFinished && (
         <FinishedModal
           finalScore={finalScore}
-          showModal={gameFinsihed}
+          showModal={gameFinished}
         ></FinishedModal>
       )}
     </div>
