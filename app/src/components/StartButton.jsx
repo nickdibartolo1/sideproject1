@@ -20,7 +20,7 @@ const StartButton = () => {
     if (finalTimeValue && typeof finalTimeValue === 'object' && 'seconds' in finalTimeValue && 'milliseconds' in finalTimeValue) {
       setTimer(finalTimeValue);
   
-      const finalGameTime = `${finalTimeValue.seconds.toString().padStart(2, "0")}:${(finalTimeValue.milliseconds / 10).toFixed(0).padStart(2, "0")}`;
+      const finalGameTime = `${finalTimeValue.seconds.toString().padStart(2, "0")}.${(finalTimeValue.milliseconds / 10).toFixed(0).padStart(2, "0")}`;
       setFinalTime(finalGameTime);
 
     } else {

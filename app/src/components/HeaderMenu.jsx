@@ -1,11 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import { Group, Burger, Container, Button } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
+import { Group, Container, Button } from "@mantine/core";
 import classes from "./HeaderMenu.module.css";
 
 export function HeaderMenu({ onReceiveTimer, timerActive }) {
-  const [opened, { toggle }] = useDisclosure(false);
   const [time, setTime] = useState({ seconds: 0, milliseconds: 0 });
   const [headerMenuTimerActive, setHeaderMenuTimerActive] = useState(false);
 
@@ -54,12 +52,11 @@ export function HeaderMenu({ onReceiveTimer, timerActive }) {
               .toFixed(0)
               .padStart(2, "0")}`}
           </p>
-          <Group gap={5} visibleFrom="sm">
+          <Group gap={5}>
             <Button className={classes.button} onClick={handleRefresh}>
               Restart
             </Button>
           </Group>
-          <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
         </div>
       </Container>
     </header>
