@@ -21,7 +21,6 @@ const StartButton = () => {
       setTimer(x);
   
       const finalGameTime = `${x.seconds.toString().padStart(2, "0")}:${(x.milliseconds / 10).toFixed(0).padStart(2, "0")}`;
-      setHeaderMenuTimerActive(false);
       setFinalTime(finalGameTime);
   
       // console.log("Game has finished!");
@@ -62,6 +61,7 @@ const StartButton = () => {
         {start ? (
           <CardMatches
             onGameFinish={receiveTimerFromHeaderMenu}
+            onEndTimer={setHeaderMenuTimerActive}
             finalScore={finalTime}
           ></CardMatches>
         ) : (

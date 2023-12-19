@@ -22,7 +22,7 @@ function interleaveData(dataArr) {
   return interleavedData;
 }
 
-function CardMatches({ onGameFinish, finalScore }) {
+function CardMatches({ onGameFinish, finalScore, onEndTimer }) {
   const [combinedData, setCombinedData] = useState([]);
   const [select, setSelect] = useState(-1);
   const [gameFinished, setGameFinished] = useState(false);
@@ -118,10 +118,14 @@ function CardMatches({ onGameFinish, finalScore }) {
     setCombinedData(updatedData);
 
     const allMatched = updatedData.every((card) => card.matched); //if all cards are matched then game is over and end
-    if (allMatched) {
-      onGameFinish();
-      setGameFinished(true);
+
+   if (allMatched) {
+    setGameFinished(true); // Set game finished
+    if (onEndTimer) {
+      onEndTimer(false); // Invoke onEndTimer to stop the timer
     }
+    onGameFinish(); // Notify parent component that the game is finished
+  }
   }
 
   return (
