@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Group, Burger, Container, Button } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import classes from "./HeaderMenu.module.css";
-import Leaderboards from "./Leaderboards";
 
 export function HeaderMenu({ onReceiveTimer, timerActive }) {
   const [opened, { toggle }] = useDisclosure(false);
@@ -31,7 +30,7 @@ export function HeaderMenu({ onReceiveTimer, timerActive }) {
   }, [timerActive, headerMenuTimerActive]);
 
   useEffect(() => {
-    onReceiveTimer(time);
+    onReceiveTimer(time); // start time when timer is received from startButton
   }, [time, onReceiveTimer]);
 
 
@@ -59,7 +58,6 @@ export function HeaderMenu({ onReceiveTimer, timerActive }) {
             <Button className={classes.button} onClick={handleRefresh}>
               Restart
             </Button>
-            <Leaderboards></Leaderboards>
           </Group>
           <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
         </div>

@@ -29,7 +29,7 @@ function CardMatches({ onGameFinish, finalScore, onEndTimer }) {
 
   const deslectRef = useRef();
 
-  const cardDeselectOnOutsideClick = (e) => {
+  const cardDeselectOnOutsideClick = (e) => { //target logic for if a card is selected
     if (deslectRef.current && !deslectRef.current.contains(e.target)) {
       setSelect(-1);
     }
@@ -49,9 +49,9 @@ function CardMatches({ onGameFinish, finalScore, onEndTimer }) {
     async function fetchDataAndInterleave() {
       try {
         const dataArr = await fetchData();
-        const interleavedData = interleaveData(dataArr);
+        const interleavedData = interleaveData(dataArr); //pass fetched data into the interleave function to mix up the incoming data
 
-        const shuffledData = interleavedData.sort(() => Math.random() - 0.5); // Shuffle the data when fetched and set
+        const shuffledData = interleavedData.sort(() => Math.random() - 0.5); // Shuffle the data when fetched and set it
         setCombinedData(shuffledData);
       } catch (error) {
         console.error("Error fetching data:", error);
