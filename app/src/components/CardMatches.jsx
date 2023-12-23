@@ -49,7 +49,7 @@ function CardMatches({ onGameFinish, finalScore, onEndTimer }) {
     async function fetchDataAndInterleave() {
       try {
         const dataArr = await fetchData();
-        const interleavedData = interleaveData(dataArr); //pass fetched data into the interleave function to mix up the incoming data
+        const interleavedData = interleaveData(dataArr); //pass fetched data into the interleave function to mix up the 
 
         const shuffledData = interleavedData.sort(() => Math.random() - 0.5); // Shuffle the data when fetched and set it
         setCombinedData(shuffledData);

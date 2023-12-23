@@ -1,7 +1,7 @@
 export async function fetchData() {
     const dataArr = [];
   
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 3; i++) {
       const response = await fetch("http://localhost:80/giveword");
   
       if (!response.ok) {
@@ -9,6 +9,7 @@ export async function fetchData() {
       }
   
       const apiData = await response.json();
+      console.log("DATA", apiData)
   
       const pairId = `pair_${i}`;
   

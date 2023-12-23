@@ -26,7 +26,7 @@ const words =
     "potato", "nail", "gate", "glisten", "pinnacle", "azure", "music", "gossamer", "jasmine", "umbrella", "rivulet", "zephyr", "oasis",
     "snake", "saftey", "olive", "compassion", "republic", "cheeseburger", "speech", "earthquake", "trophy", "woman", "imperial",
     "magic", "canyon", "panorama", "elephant", "bus", "radiation", "helium", "icicle", "muscle", "submarine", "archer",
-    "trunk", "miraculous", "sound", "missle", "artist", "spell", "witch", "studio", "exit", "glass",
+    "trunk", "farm", "sound", "missle", "artist", "spell", "witch", "studio", "exit", "glass",
     "system", "hate", "leader", "beer", "paragon", "divine", "force", "driver", "education", "responsibility", "cloud",
     "manufacturer", "raven", "time", "division", "power", "state", "bread", "candy", "steel", "cake", "volume", "bee",
     "math", "mother", "president", "mammal", "leadership", "duck", "season", "software", "science", "chamber", "oyster",
