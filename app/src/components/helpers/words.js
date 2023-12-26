@@ -33,7 +33,7 @@ const words =
     "sponge", "trident", "pumpkin", "population", "gold", "lemon", "desk", "doctor", "guitar", "plane", "hammer",
     "year", "seaweed", "silver", "pig", "televison", "chest", "hole", "kite", "obligation", "mail", "divine", "cabinet",
     "microphone", "darkness", "moon", "pencil", "garbage", "assumption", "wing", "disease", "money", "axe", "watermelon",
-    "divine", "dinosaur", "blood", "cliff", "ethereal", "photo", "claw", "sand", "ear"
+    "divine", "dinosaur", "blood", "cliff", "planet", "photo", "claw", "sand", "ear"
 
   ]
   

@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect, useRef } from "react";
-import { fetchData } from "./utils/api";
 import { shuffleArray } from "./utils/shuffle";
 import Card from "./Card";
 import FinishedModal from "./FinishedModal";
@@ -29,7 +28,8 @@ function CardMatches({ onGameFinish, finalScore, onEndTimer }) {
 
   const deslectRef = useRef();
 
-  const cardDeselectOnOutsideClick = (e) => { //target logic for if a card is selected
+  const cardDeselectOnOutsideClick = (e) => {
+    //target logic for if a card is selected
     if (deslectRef.current && !deslectRef.current.contains(e.target)) {
       setSelect(-1);
     }
@@ -48,13 +48,20 @@ function CardMatches({ onGameFinish, finalScore, onEndTimer }) {
   useEffect(() => {
     async function fetchDataAndInterleave() {
       try {
-        const dataArr = await fetchData();
-        const interleavedData = interleaveData(dataArr); //pass fetched data into the interleave function to mix up the 
-
-        const shuffledData = interleavedData.sort(() => Math.random() - 0.5); // Shuffle the data when fetched and set it
+        const response = await fetch("http://localhost:80/giveword");
+        if (!response.ok) {
+          throw new Error('Failed to fetch');
+        }
+        console.log("RESPONSE", response)
+        
+        const data = await response.json(); // Extract JSON from the response
+        console.log("DATA", data)
+        const interleavedData = interleaveData(data);
+        const shuffledData = interleavedData.sort(() => Math.random() - 0.5);
         setCombinedData(shuffledData);
       } catch (error) {
         console.error("Error fetching data:", error);
+        // Handle error state or notify the user accordingly
       }
     }
 
@@ -119,13 +126,13 @@ function CardMatches({ onGameFinish, finalScore, onEndTimer }) {
 
     const allMatched = updatedData.every((card) => card.matched); //if all cards are matched then game is over and end
 
-   if (allMatched) {
-    setGameFinished(true); // Set game finished
-    if (onEndTimer) {
-      onEndTimer(false); // Invoke onEndTimer to stop the timer
+    if (allMatched) {
+      setGameFinished(true); // Set game finished
+      if (onEndTimer) {
+        onEndTimer(false); // Invoke onEndTimer to stop the timer
+      }
+      onGameFinish(); // Notify parent component that the game is finished
     }
-    onGameFinish(); // Notify parent component that the game is finished
-  }
   }
 
   return (

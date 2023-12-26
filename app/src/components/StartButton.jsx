@@ -34,7 +34,7 @@ const StartButton = () => {
         onReceiveTimer={receiveTimerFromHeaderMenu}
         timerActive={headerMenuTimerActive}
       ></HeaderMenu>
-      <div style={{ position: "relative" }}>
+      <div style={{ position: "relative", textAlign: "center" }}>
         <h1>Card Match Game</h1>
         {start ? (
           <CardMatches
@@ -44,7 +44,7 @@ const StartButton = () => {
           ></CardMatches>
         ) : (
           <section>
-            <p>
+            <p style={{textAlign: "center"}}>
               Match all the terms with their definitions as fast as you can!
             </p>
             <div className="button">
