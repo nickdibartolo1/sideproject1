@@ -1,7 +1,7 @@
 ## Project Name
 Word Match Game
 
-An game application that is a mock creation of Quizlets word match game. 
+A game application that is a mock creation of Quizlets word match game. 
 
 ## Project Status
 Project itself is finished but, still in deployment process
