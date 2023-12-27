@@ -9,15 +9,15 @@ Project itself is finished but, still in deployment process
 ## Project Screen Shot(s)   
 
 ## Technologies Used:
-React.js
-Javascript
-CSS
-Node.js
-Express.js
-Node-fetch
-Rapidapi API
-Vite
-Mantine UI
+React.js,
+Javascript,
+CSS,
+Node.js,
+Express.js,
+Node-fetch,
+Rapidapi API,
+Vite,
+Mantine UI,
 
 
 ## Reflection
