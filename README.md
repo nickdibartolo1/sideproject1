@@ -9,9 +9,8 @@ Project itself is finished but, still in deployment process
 ## Project Screen Shot(s)   
 ![db0009866b166c9c9c08047ad39f8930](https://github.com/nickdibartolo1/Word-Match-Game/assets/107448423/fbd6969b-21dd-4731-b40e-39026667cbb4)
 ![c38afbf4aaf66d974427f263211e6fe9](https://github.com/nickdibartolo1/Word-Match-Game/assets/107448423/e33c2baa-1028-4418-ac0e-7df2dbdbc445)
+![3906acff5763370a2641d6ea32cd6b06](https://github.com/nickdibartolo1/Word-Match-Game/assets/107448423/6bb29912-bad3-4b36-9fb7-61e4daa4bf80)
 
-
-![db0009866b166c9c9c08047ad39f8930](https://github.com/nickdibartolo1/Word-Match-Game/assets/107448423/d6fa4e4e-6e76-4372-9c38-7910ee765f2e)
 
 ## Technologies Used:
 React.js,
