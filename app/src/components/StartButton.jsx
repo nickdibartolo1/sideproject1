@@ -35,7 +35,7 @@ const StartButton = () => {
         timerActive={headerMenuTimerActive}
       ></HeaderMenu>
       <div style={{ position: "relative", textAlign: "center" }}>
-        <h1>Card Match Game</h1>
+        <h1>Word Match Game</h1>
         {start ? (
           <CardMatches
             onGameFinish={receiveTimerFromHeaderMenu}
