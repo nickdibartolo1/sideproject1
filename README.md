@@ -1,6 +1,4 @@
-## Project Name
-Word Match Game
-
+## Project Name: Word Match Game
 A game application that is a mock creation of Quizlets word match game. 
 
 ## Project Status
