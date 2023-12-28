@@ -5,7 +5,9 @@ A game application that is a mock creation of Quizlets word match game.
 Project itself is finished but, still in deployment process
 
 ## Project Screen Shot(s)   
-
+![f4735799a660da029aa3dbe22d3b98c4](https://github.com/nickdibartolo1/Word-Match-Game/assets/107448423/d0684555-4085-457e-ad35-423a008db8bc)
+![0c35fbc492d![3906acff5763370a2641d6ea32cd6b06](https://github.com/nickdibartolo1/Word-Match-Game/assets/107448423/910a1a2b-bbe6-4672-b8f1-46e97d9c57d6)
+fee45bfe74ca1a545ed78](https://github.com/nickdibartolo1/Word-Match-Game/assets/107448423/bf88a48a-c726-4bc8-af45-0c12a04e27f3)
 
 
 ## Technologies Used:
