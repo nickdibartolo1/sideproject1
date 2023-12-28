@@ -7,7 +7,9 @@ Project itself is finished but, still in deployment process
 ## Project Screen Shot(s)   
 ![f4735799a660da029aa3dbe22d3b98c4](https://github.com/nickdibartolo1/Word-Match-Game/assets/107448423/d0684555-4085-457e-ad35-423a008db8bc)
 
+![0c35fbc492dfee45bfe74ca1a545ed78](https://github.com/nickdibartolo1/Word-Match-Game/assets/107448423/8aafa532-2860-4e46-b2c2-78a0d47d89a1)
 
+![3906acff5763370a2641d6ea32cd6b06](https://github.com/nickdibartolo1/Word-Match-Game/assets/107448423/926fa060-d02d-4a53-b321-2d96c582dd89)
 
 
 ## Technologies Used:
