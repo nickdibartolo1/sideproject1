@@ -17,9 +17,13 @@
 
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import html from 'vite-plugin-html';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    html()
+  ],
   server: {
     host: 'localhost',
     port: 3000
@@ -28,9 +32,9 @@ export default defineConfig({
     outDir: 'dist',
     rollupOptions: {
       input: {
-        main: './src/main.jsx'
+        main: './src/main.jsx' 
       }
     }
-  },
-  publicDir: 'public'
+  }
 });
+
