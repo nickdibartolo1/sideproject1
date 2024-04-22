@@ -17,12 +17,12 @@
 
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import html from 'vite-plugin-html';
+// import html from 'vite-plugin-html';
 
 export default defineConfig({
   plugins: [
     react(),
-    html()
+    // html()
   ],
   server: {
     host: 'localhost',
