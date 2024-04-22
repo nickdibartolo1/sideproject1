@@ -5,11 +5,9 @@ import "./index.css";
 
 function App() {
   return (
-    <>
-      <MantineProvider>
-        <StartButton />
-      </MantineProvider>
-    </>
+    <MantineProvider>
+      <StartButton />
+    </MantineProvider>
   );
 }
 
