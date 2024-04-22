@@ -32,7 +32,7 @@ export default defineConfig({
     outDir: 'dist',
     rollupOptions: {
       input: {
-        main: 'src/index.html' 
+        main: './src/main.jsx'
       }
     }
   }
