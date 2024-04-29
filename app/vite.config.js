@@ -30,7 +30,7 @@ export default defineConfig({
     outDir: 'dist',
     rollupOptions: {
       input: {
-        main: './app/src/main.jsx'
+        main: './src/main.jsx'
       }
     }
   }
