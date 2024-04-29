@@ -17,12 +17,10 @@
 
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-// import html from 'vite-plugin-html';
 
 export default defineConfig({
   plugins: [
     react(),
-    // html()
   ],
   server: {
     host: 'localhost',
@@ -32,7 +30,7 @@ export default defineConfig({
     outDir: 'dist',
     rollupOptions: {
       input: {
-        main: './src/main.jsx'
+        main: './app/src/main.jsx'
       }
     }
   }
